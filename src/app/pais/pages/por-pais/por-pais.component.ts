@@ -14,12 +14,15 @@ export class PorPaisComponent{
  termino: string = '';
  error: boolean = false;
  paises: RESTCountry[] = [];
+ paisesSugeridos: RESTCountry[] = [];
  placeholder: string = 'Por pais';
+ mostrarSug: boolean = true;
 
       buscar(termino: string){
 
             this.error = false;
             this.termino = termino;
+            this.mostrarSug = false;
             this.paisService.buscarPais(this.termino).subscribe(
               (resp) =>{
               this.paises = resp;
@@ -31,6 +34,13 @@ export class PorPaisComponent{
 
       sugerencias(termino: string){
         this.error = false;
+        this.termino = termino;
+        this.mostrarSug = true;
+
+        this.paisService.buscarPais(this.termino)
+            .subscribe(resp => this.paisesSugeridos = resp.splice(0,5),
+            (err) => this.paisesSugeridos = []
+            );
 
       }
   }

@@ -14,7 +14,7 @@
 </div>
 <hr>
 <div *ngIf="paises.length > 0" class="row">
-  <div *ngFor="let pais of paises; let i = index" class="col-12">
+  <div>
     <app-pais-tabla [paises]="paises"></app-pais-tabla>
   </div>
 </div>

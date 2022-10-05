@@ -9,9 +9,25 @@
       </app-pais-input>
     </div>
 </div>
+<ul *ngIf="mostrarSug"
+    class="list-group">
+  <li *ngFor="let pais of paisesSugeridos"
+      class="list-group-item list-group-item-action">
+      <a class="nav-link"
+         [routerLink]="['/pais', pais.cca2]">
+                  {{pais.name.common}}
+      </a>
+  </li>
+  <li class="list-group-item list-group-item-action">
+      <a (click)="buscar(termino)"
+          class="nav-link">
+                  Buscar "{{termino}}"
+      </a>
+  </li>
+</ul>
 <hr>
 
-<div *ngIf="error" class="alert alert-danger">
+<div *ngIf="error" class="alert alert-danger animate__animated animate__swing">
     No se encontró nada con el termino {{termino}}
 </div>
 
